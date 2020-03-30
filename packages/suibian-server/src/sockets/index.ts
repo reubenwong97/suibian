@@ -5,6 +5,7 @@ import { submitVote } from "./helper/vote";
 import {
     suibianSocket,
     joinRoomPayload,
+    startRoomPayload,
     roomPayloadBase,
     createRoomPayload,
     votePayload
@@ -44,7 +45,8 @@ export default {
                 let { username, isOwner } = data.user;
                 //set isOwner to true
                 isOwner = true;
-                const roomCode = await createRoom(socket);
+                const position = data.position;
+                const roomCode = await createRoom(socket, position);
                 if (roomCode) {
                     const roomPayload = {
                         roomCode,
